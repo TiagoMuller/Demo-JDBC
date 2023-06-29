@@ -30,8 +30,12 @@ public class Program2 {
 			System.out.println(obj);
 		}
 		
-		System.out.println("\n=== TEST 4: seller Update ===");
-	
+		System.out.println("\n=== TEST 4: department Update ===");
+		department = departmentDao.findById(8);
+		department.setName("Cars");
+		departmentDao.update(department);
+		System.out.println("Update department!");
+		System.out.println(departmentDao.findById(8));
 		
 		System.out.println("\n=== TEST 5: seller Delete ===");
 		
