@@ -26,9 +26,9 @@ public class Program2 {
 		
 		System.out.println("\n=== TEST 3: department findAll ===");
 		List<Department> list = departmentDao.findAll();
-		for(Department obj : list) {
+		/*for(Department obj : list) {
 			System.out.println(obj);
-		}
+		}*/
 		
 		System.out.println("\n=== TEST 4: department Update ===");
 		department = departmentDao.findById(8);
@@ -38,7 +38,13 @@ public class Program2 {
 		System.out.println(departmentDao.findById(8));
 		
 		System.out.println("\n=== TEST 5: seller Delete ===");
-		
+		for(Department obj : list) {
+			System.out.println(obj);
+		}
+		System.out.print("Enter id for delete department test: ");
+		int id = sc.nextInt();
+		departmentDao.deleteById(id);
+		System.out.println("Remove completed!");
 	
 	}
 }
