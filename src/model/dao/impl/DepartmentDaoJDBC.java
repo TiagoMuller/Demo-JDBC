@@ -114,26 +114,17 @@ public class DepartmentDaoJDBC implements DepartmentDao{
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			st = conn.prepareStatement(
-					"SELECT department.Name as DepName, department.id as DepartmentId "
-					+ "FROM department "
-					+ "ORDER BY Name");
+			st = conn.prepareStatement("SELECT * FROM department ORDER BY Name");
 			
 			rs = st.executeQuery();
 			
 			List<Department> list = new ArrayList<>();
-			Map<Integer, Department> map = new HashMap<>();
 			
 			while (rs.next()) {
-				
-				Department dep = map.get(rs.getInt("DepartmentId"));
-				
-				if(dep == null) {
-					dep = instantiateDepartment(rs);
-					map.put(rs.getInt("DepartmentId"), dep);
-				}
-
-				list.add(dep);
+				Department obj = new Department();
+				obj.setId(rs.getInt("Id"));
+				obj.setName(rs.getString("Name"));
+				list.add(obj);
 			}
 			return list;
 		}
@@ -144,12 +135,5 @@ public class DepartmentDaoJDBC implements DepartmentDao{
 			DB.closeStatement(st);
 			DB.closeResultSet(rs);
 		}
-	}
-
-	private Department instantiateDepartment(ResultSet rs) throws SQLException {
-		Department dep = new Department();
-		dep.setId(rs.getInt("DepartmentId"));
-		dep.setName(rs.getString("DepName"));
-		return dep;
 	}
 }
