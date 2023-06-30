@@ -87,16 +87,15 @@ public class DepartmentDaoJDBC implements DepartmentDao{
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			st = conn.prepareStatement(
-					"SELECT department.Name as DepName, department.id as DepartmentId "
-					+ "FROM department "
-					+ "WHERE department.Id = ?");
+			st = conn.prepareStatement("SELECT * FROM department WHERE Id = ?");
 
 			st.setInt(1, id);
 			rs = st.executeQuery();
 			if (rs.next()) {
-				Department dep = instantiateDepartment(rs);
-				return dep;
+				Department obj = new Department();
+				obj.setId(rs.getInt("Id"));
+				obj.setName(rs.getString("Name"));
+				return obj;
 			}
 			return null;
 			

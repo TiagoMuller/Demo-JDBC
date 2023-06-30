@@ -16,9 +16,9 @@ public class Program2 {
 		DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
 		
 		System.out.println("=== TEST 1: Department Insert ===");
-		/*Department newDepartment = new Department(null, "Food");
+		Department newDepartment = new Department(null, "Food");
 		departmentDao.insert(newDepartment);
-		System.out.println("Insert done! Id: " + newDepartment.getId());*/
+		System.out.println("Insert done! Id: " + newDepartment.getId());
 		
 		System.out.println("\n=== TEST 2: department findByID ===");
 		Department department = departmentDao.findById(3);
@@ -26,9 +26,9 @@ public class Program2 {
 		
 		System.out.println("\n=== TEST 3: department findAll ===");
 		List<Department> list = departmentDao.findAll();
-		/*for(Department obj : list) {
+		for(Department obj : list) {
 			System.out.println(obj);
-		}*/
+		}
 		
 		System.out.println("\n=== TEST 4: department Update ===");
 		department = departmentDao.findById(8);
